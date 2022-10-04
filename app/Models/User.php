@@ -12,6 +12,8 @@ use App\Models\OrmasPembina;
 use App\Models\OrmasPenasihat;
 use App\Models\Persyaratan;
 use App\Models\Dokumen;
+use App\Models\Role;
+use App\Models\Histori;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -58,7 +60,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    
+    public function level()
+    {
+        return $this->belongsTo(Role::class, 'roles', 'id');
+    }
+
     public function kategori()
     {
         return $this->belongsTo(Kategori::class, 'kategori_id', 'id');
@@ -66,47 +72,56 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function permohonan()
     {
-    return $this->belongsTo(Permohonan::class,'permohonan_id','id');
+        return $this->belongsTo(Permohonan::class, 'permohonan_id', 'id');
     }
 
-    Public function ketua()
+    public function ketua()
     {
-        return $this->hasOne(OrmasKetua::class,'no_register','no_register');
+        return $this->hasOne(OrmasKetua::class, 'no_register', 'no_register');
     }
 
-    Public function sekretaris()
+    public function sekretaris()
     {
-        return $this->hasOne(OrmasSekretaris::class,'no_register','no_register');
+        return $this->hasOne(OrmasSekretaris::class, 'no_register', 'no_register');
     }
 
-    Public function bendahara()
+    public function bendahara()
     {
-        return $this->hasOne(OrmasBendahara::class,'no_register','no_register');
-    }
-    
-    Public function pendiri()
-    {
-        return $this->hasOne(OrmasPendiri::class,'no_register','no_register');
+        return $this->hasOne(OrmasBendahara::class, 'no_register', 'no_register');
     }
 
-    Public function pembina()
+    public function pendiri()
     {
-        return $this->hasOne(OrmasPembina::class,'no_register','no_register');
+        return $this->hasOne(OrmasPendiri::class, 'no_register', 'no_register');
     }
 
-    Public function penasihat()
+    public function pembina()
     {
-        return $this->hasOne(OrmasPenasihat::class,'no_register','no_register');
+        return $this->hasOne(OrmasPembina::class, 'no_register', 'no_register');
     }
 
-    Public function persyaratan()
+    public function penasihat()
     {
-        return $this->hasOne(persyaratan::class,'no_register','no_register');
+        return $this->hasOne(OrmasPenasihat::class, 'no_register', 'no_register');
     }
 
-    Public function dokumen()
+    public function persyaratan()
     {
-        return $this->hasOne(dokumen::class,'no_register','no_register');
+        return $this->hasOne(Persyaratan::class, 'no_register', 'no_register');
     }
 
+    public function dokumen()
+    {
+        return $this->hasOne(Dokumen::class, 'no_register', 'no_register');
+    }
+
+    public function histori()
+    {
+        return $this->belongsTo(Histori::class,'no_register', 'no_register');
+    }
+
+    public function laporan()
+    {
+        return $this->hasMany(LaporanSemester::class, 'no_register', 'no_register');
+    }
 }

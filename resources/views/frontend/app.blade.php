@@ -49,7 +49,30 @@
     <!-- responsive -->
     <link rel="stylesheet" type="text/css" href="{{ asset('frontafs/css/responsive.css') }}">
 
+    {{-- Editor Summernote CSS --}}
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('backafs/assets/extra-libs/summernote/summernote-lite.min.css') }}">
 
+    {{-- Swtch CSS --}}
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('backafs/assets/libs/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css') }}">
+
+    <!-- Custom CSS -->
+    <link href="{{ asset('backafs/dist/css/style.min.css') }}" rel="stylesheet">
+
+    <!-- CSS DatePicker -->
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('backafs/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('backafs/assets/libs/daterangepicker/daterangepicker.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('backafs/assets/libs/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css') }}">
+    
+<style>
+    olt{
+        list-style-type: number;
+    }
+</style>
     @livewireStyles()
     @method('style')
 </head>
@@ -79,7 +102,7 @@
     <!--site-main end-->
 
     <!--footer start-->
-    <footer id="contact-us" class="footer widget-footer clearfix">
+    <footer id="contact-us" class="main-footer">
         @include('frontend.footer')
     </footer>
     <!--footer end-->
@@ -111,10 +134,13 @@
     <script src={{ asset('frontafs/revolution/js/rs6.min.js') }}></script>
     <script src={{ asset('frontafs/revolution/js/slider.js') }}></script>
     <script src="{{ asset('backafs/assets/libs/moment/moment.js') }}"></script>
-
+    
     {{-- Date Picker JS --}}
-    <script src="{{ asset('backafs/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
-
+    <script src="{{ asset('backafs/assets/libs/daterangepicker/daterangepicker.js') }}"></script>
+    <script
+        src="{{ asset('backafs/assets/libs/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker-custom.js') }}">
+    </script>
+    
     <!-- Javascript end-->
     @livewireScripts
     @stack('script')

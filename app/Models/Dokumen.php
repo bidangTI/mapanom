@@ -53,7 +53,10 @@ class Dokumen extends Model
         'valket_badan_hukum_parpol',
         'surat_pernyataan_ormaspol',
         'val_surat_pernyataan_ormaspol',
-        'valket_surat_pernyataan_ormaspol'
+        'valket_surat_pernyataan_ormaspol',
+        'program_kerja_ormas',
+        'val_program_kerja_ormas',
+        'valket_program_kerja_ormas'
     ];
 
     public function dokumen()

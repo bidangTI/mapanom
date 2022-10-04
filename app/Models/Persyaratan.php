@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Models;
+
 use App\Models\User;
+use App\Models\AktaNotaris;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -29,7 +31,6 @@ class Persyaratan extends Model
         'tgl_pendirian_ormas',
         'no_sk_kepengurusan_ormaspol',
         'tujuan_ormas',
-        'program_kerja_ormas',
         'keputusan_tinggi_ormas',
         'kepengurusan_id_ormas',
         'npwp_ormaspol',
@@ -44,6 +45,11 @@ class Persyaratan extends Model
 
     public function persyaratan()
     {
-        return $this->belongsTo(User::class, 'no_register','no_register');
+        return $this->belongsTo(User::class, 'no_register', 'no_register');
+    }
+
+    public function akta()
+    {
+        return $this->belongsTo(AktaNotaris::class, 'bidang_id_ormas', 'id');
     }
 }

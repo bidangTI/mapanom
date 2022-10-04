@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\SyaratAdministrasi;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Kategori extends Model
 {
@@ -11,4 +12,9 @@ class Kategori extends Model
     public $table = 'afs_kategori';
     protected $guarded = ['id'];
     public $timestamps = true;
+
+    public function persyaratan()
+    {
+        return $this->hasMany(SyaratAdministrasi::class);
+    }
 }
