@@ -18,7 +18,8 @@ class PermohonanSeeder extends Seeder
         Permohonan::create(['status' => 'Daftar Akun']);
         Permohonan::create(['status' => 'Verifikasi Data']);
         Permohonan::create(['status' => 'Verfikasi Lapangan']);
-        Permohonan::create(['status' => 'Surat Keberadaan']);
+        Permohonan::create(['status' => 'Ajukan Tanda Tangan']);
+        Permohonan::create(['status' => 'Tanda Tangan Surat Keberadaan']);
         Permohonan::create(['status' => 'Selesai']);
     }
 }

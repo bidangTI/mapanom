@@ -2,14 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuestController;
-use App\Http\Controllers\Bidang\DataBidangController;
-use App\Http\Controllers\Ormas\DataOrmasController;
 use App\Http\Controllers\GiatsmtController;
-use \App\Http\Controllers\Ormas\PengurusOrmasController;
-use \App\Http\Controllers\Ormas\DokumenOrmasController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Laporan\LaporanController;
+use App\Http\Controllers\Ormas\DataOrmasController;
 use \App\Http\Controllers\Ormas\KirimOrmasController;
+use App\Http\Controllers\Bidang\DataBidangController;
+use App\Http\Controllers\Admin\LaporanAdminController;
+use \App\Http\Controllers\Ormas\DokumenOrmasController;
+use \App\Http\Controllers\Ormas\PengurusOrmasController;
+use App\Http\Controllers\Admin\AlurPersyaratanController;
+use App\Http\Controllers\Admin\SyaratAdministrasiController;
 
 
 /*
@@ -24,11 +29,13 @@ use \App\Http\Controllers\Ormas\KirimOrmasController;
 */
 
 
-// HALAMAN FRONTEND
-Route::get('/', function () {
-    return view('frontend.home');
-    // return redirect()->route('login');
-})->name('home');
+// // HALAMAN FRONTEND
+// Route::get('/', function () {
+//     return view('frontend.home');
+//     // return redirect()->route('login');
+// })->name('home');
+
+Route::get('/', [GuestController::class, 'persyaratan'])->name('home');
 
 Route::group(['prefix' => 'guest', 'as' => 'guest.'], function () {
     Route::get('/daftar', [GuestController::class, 'pendaftaran'])->name('daftar');
@@ -45,6 +52,15 @@ Route::middleware(['auth', 'verified', 'roles:1,2,3'])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/bidang', [DataBidangController::class, 'index'])->name('data-bidang');
+    Route::get('/syarat',[SyaratAdministrasiController::class,'index'])->name('data-syarat');
+    Route::get('/alur-persyaratan', [AlurPersyaratanController::class, 'index'])->name('alur-persyaratan');
+    Route::get('/slider', [SliderController::class, 'index'])->name('slider');
+    Route::get('/laporan-semester', [LaporanController::class, 'index'])->name('laporan-semester');
+    Route::get('/laporan-admin', [LaporanAdminController::class, 'index'])->name('laporan-admin');
+    Route::get('/export_xlsx', [LaporanAdminController::class, 'export_xlsx'])->name('export_xlsx');
+    Route::get('/export_csv', [LaporanAdminController::class, 'export_csv'])->name('export_csv');
+    Route::get('/export_pdf', [LaporanAdminController::class, 'export_pdf'])->name('export_pdf');
+    Route::get('/user_pdf', [LaporanController::class, 'export_pdf'])->name('user_pdf');
 
     // ORMAS
     Route::get('/data-ormas', [DataOrmasController::class, 'index'])->name('data-ormas');

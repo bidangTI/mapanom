@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Permohonan;
+use App\Models\SliderGambar;
+
 use Illuminate\Http\Request;
 use App\Models\Kategori;
+use App\Models\SyaratAdministrasi;
 
 class GuestController extends Controller
 {
@@ -13,8 +17,18 @@ class GuestController extends Controller
         return view('frontend.daftar', compact('kategori'));
     }
 
+    public function persyaratan()
+    {
+        $persyaratan = SyaratAdministrasi::all();
+        $slider = SliderGambar::all();
+        return view('frontend.home', compact('persyaratan','slider'));
+    }
+
     public function alur()
     {
-        return view('frontend.alur');
+        $alur = Permohonan::all();
+        return view('frontend.alur', compact('alur')); 
     }
+    
+
 }

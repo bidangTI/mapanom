@@ -9,31 +9,36 @@
     <title>Backend</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/xtremeadmin/" />
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/backafs/assets/images/app/iconbar1.png') }}">
-
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('backafs/assets/images/app/iconbar1.png') }}">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- CSS DatePicker -->
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('/backafs/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
+        href="{{ asset('backafs/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('/backafs/assets/libs/daterangepicker/daterangepicker.css') }}">
+        href="{{ asset('backafs/assets/libs/daterangepicker/daterangepicker.css') }}">
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('/backafs/assets/libs/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css') }}">
+        href="{{ asset('backafs/assets/libs/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css') }}">
 
     {{-- Select2 CSS --}}
-    <link rel="stylesheet" type="text/css" href="{{ asset('/backafs/assets/libs/select2/dist/css/select2.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('backafs/assets/libs/select2/dist/css/select2.min.css') }}">
 
     {{-- DataTable CSS --}}
-    <link href="{{ asset('/backafs/assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}"
+    <link href="{{ asset('backafs/assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}"
         rel="stylesheet">
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('/backafs/assets/extra-libs/datatables.net-bs4/css/responsive.dataTables.min.css') }}">
+        href="{{ asset('backafs/assets/extra-libs/datatables.net-bs4/css/responsive.dataTables.min.css') }}">
 
     {{-- Editor Summernote CSS --}}
     <link rel="stylesheet" type="text/css"
-        href="{{ asset('/backafs/assets/extra-libs/summernote/summernote-lite.min.css') }}">
+        href="{{ asset('backafs/assets/extra-libs/summernote/summernote-lite.min.css') }}">
+
+    {{-- Swtch CSS --}}
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('backafs/assets/libs/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css') }}">
 
     <!-- Custom CSS -->
-    <link href="{{ asset('/backafs/dist/css/style.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('backafs/dist/css/style.min.css') }}" rel="stylesheet">
 
     @livewireStyles
     @stack('style')
@@ -78,7 +83,10 @@
             </div>
 
             <footer class="footer text-center">
-                @include('backend.layouts.footer')
+                {{-- <div class="card"> --}}
+                    @include('backend.layouts.footer')
+                {{-- </div> --}}
+
             </footer>
         </div>
     </div>
@@ -87,52 +95,54 @@
     </aside>
     <div class="chat-windows"></div>
 
-    <script src="{{ asset('/backafs/assets/libs/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('backafs/assets/libs/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="{{ asset('/backafs/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('backafs/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Theme Required Js -->
-    <script src="{{ asset('/backafs/dist/js/app.min.js') }}"></script>
-    <script src="{{ asset('/backafs/dist/js/app.init.js') }}"></script>
-    <script src="{{ asset('/backafs/dist/js/app-style-switcher.js') }}"></script>
+    <script src="{{ asset('backafs/dist/js/app.min.js') }}"></script>
+    <script src="{{ asset('backafs/dist/js/app.init.js') }}"></script>
+    <script src="{{ asset('backafs/dist/js/app-style-switcher.js') }}"></script>
 
     <!-- perfect scrollbar JS -->
-    <script src="{{ asset('/backafs/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
-    <script src="{{ asset('/backafs/assets/extra-libs/sparkline/sparkline.js') }}"></script>
+    <script src="{{ asset('backafs/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
+    <script src="{{ asset('backafs/assets/extra-libs/sparkline/sparkline.js') }}"></script>
     <!--Wave Effects -->
-    <script src="{{ asset('/backafs/dist/js/waves.js') }}"></script>
+    <script src="{{ asset('backafs/dist/js/waves.js') }}"></script>
 
     <!--Menu sidebar JS-->
-    <script src="{{ asset('/backafs/dist/js/sidebarmenu.js') }}"></script>
+    <script src="{{ asset('backafs/dist/js/sidebarmenu.js') }}"></script>
 
     <!--Custom JS -->
-    <script src="{{ asset('/backafs/dist/js/feather.min.js') }}"></script>
-    <script src="{{ asset('/backafs/dist/js/custom.min.js') }}"></script>
-    <script src="{{ asset('/backafs/assets/libs/moment/moment.js') }}"></script>
+    <script src="{{ asset('backafs/dist/js/feather.min.js') }}"></script>
+    <script src="{{ asset('backafs/dist/js/custom.min.js') }}"></script>
+    <script src="{{ asset('backafs/assets/libs/moment/moment.js') }}"></script>
 
     {{-- Date Picker JS --}}
-    <script src="{{ asset('/backafs/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
-    <script src="{{ asset('/backafs/assets/libs/daterangepicker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('backafs/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ asset('backafs/assets/libs/daterangepicker/daterangepicker.js') }}"></script>
     <script
-        src="{{ asset('/backafs/assets/libs/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker-custom.js') }}">
+        src="{{ asset('backafs/assets/libs/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker-custom.js') }}">
     </script>
 
     {{-- Data Table JS --}}
-    <script src="{{ asset('/backafs/assets/extra-libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('/backafs/assets/extra-libs/datatables.net-bs4/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('/backafs/dist/js/pages/datatable/datatable-basic.init.js') }}"></script>
+    <script src="{{ asset('backafs/assets/extra-libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('backafs/assets/extra-libs/datatables.net-bs4/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('backafs/dist/js/pages/datatable/datatable-basic.init.js') }}"></script>
 
     {{-- Select2 JS --}}
-    <script src="{{ asset('/backafs/assets/libs/select2/dist/js/select2.full.min.js') }}"></script>
-    <script src="{{ asset('/backafs/assets/libs/select2/dist/js/select2.min.js') }}"></script>
-    <script src="{{ asset('/backafs/dist/js/pages/forms/select2/select2.init.js') }}"></script>
+    <script src="{{ asset('backafs/assets/libs/select2/dist/js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('backafs/assets/libs/select2/dist/js/select2.min.js') }}"></script>
+    <script src="{{ asset('backafs/dist/js/pages/forms/select2/select2.init.js') }}"></script>
 
     {{-- Editor Summernote JS --}}
-    <script src="{{ asset('/backafs/assets/extra-libs/summernote/summernote-lite.min.js') }}"></script>
+    <script src="{{ asset('backafs/assets/extra-libs/summernote/summernote-lite.min.js') }}"></script>
 
     {{-- Sweet Alert JS --}}
-    <script src="{{ asset('/backafs/assets/libs/sweetalert2@10.js') }}"></script>
+    <script src="{{ asset('backafs/assets/libs/sweetalert2@10.js') }}"></script>
 
+    {{-- Switch JS --}}
+    <script src="{{ asset('backafs/assets/libs/bootstrap-switch/dist/js/bootstrap-switch.min.js') }}"></script>
 
     <script>
         window.addEventListener('swal:modal', event => {
