@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('laporan_semesters', function (Blueprint $table) {
             $table->id();
             $table->string('no_register', 20);
-            $table->string('nama_ormas')->nullable();
+            $table->string('nama_ormas');
             $table->string('jenis_kegiatan');
             $table->mediumText('deskripsi_kegiatan');
             $table->enum('semester', ['1', '2']);
