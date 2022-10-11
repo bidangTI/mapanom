@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('nip');
+            $table->string('nip')->nullable();
             $table->string('name');
-            $table->string('jabatan');
+            $table->string('jabatan')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -44,7 +44,7 @@ return new class extends Migration
             $table->string('feedback_pengurus')->nullable();
             $table->string('feedback_dokumen')->nullable();
             $table->string('status_user');
-            $table->string('status_ttd', 1);
+            $table->string('status_ttd', 1)->nullable();
             $table->timestamps();
 
             $table->foreign('kategori_id')->references('id')->on('afs_kategori')->onDelete('no action');

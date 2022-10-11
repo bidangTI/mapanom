@@ -21,7 +21,8 @@ class UserSeeder extends Seeder
             'email' => 'super@admin.dev',
             'password' => Hash::make('!123123'),
             'email_verified_at' => date('Y-m-d H:m:s'),
-            'roles' => 1
+            'roles' => 1,
+            'status_user' => 'Y'
         ]);
         User::create([
             'name' => 'User Pendaftar',
@@ -29,6 +30,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('!123123'),
             'email_verified_at' => date('Y-m-d H:m:s'),
             'roles' => 3,
+            'status_user' => 'Y',
             'kategori_id' => 1,
             'permohonan_id' => 1,
             'no_register' => '14000120220811ABC'

@@ -58,10 +58,8 @@ use Illuminate\Support\Facades\Artisan;
 
 
 // HALAMAN FRONTEND
-Route::get('/', function () {
-    return view('frontend.home');
-    // return redirect()->route('login');
-})->name('home');
+Route::get('/', [GuestController::class, 'persyaratan'])->name('home');
+
 
 Route::group(['prefix' => 'guest', 'as' => 'guest.'], function () {
     Route::get('/daftar', [GuestController::class, 'pendaftaran'])->name('daftar');

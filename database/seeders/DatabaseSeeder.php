@@ -29,6 +29,9 @@ class DatabaseSeeder extends Seeder
             KepengurusanSeeder::class,
             UserSeeder::class,
             KotaSeeder::class,
+            SliderSeeder::class,
+            SyaratAdministrasiSeeder::class,
+
         ]);
     }
 }
