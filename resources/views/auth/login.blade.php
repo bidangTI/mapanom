@@ -4,9 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name') }}</title>
+    <meta name="robots" content="noindex,nofollow">
     <title>{{ config('app.name') }}</title>
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('backafs/assets/images/app/iconbar1.png') }}">
     <!-- Custom CSS -->
@@ -16,10 +17,7 @@
 
 <body>
     <div class="main-wrapper">
-        <!-- -------------------------------------------------------------- -->
-        <!-- Preloader - style you can find in spinners.css -->
-        <!-- -------------------------------------------------------------- -->
-        {{-- <div class="preloader">
+        <div class="preloader">
             <svg class="tea lds-ripple" width="37" height="48" viewbox="0 0 37 48" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -36,32 +34,20 @@
                 <path id="steamR" d="M21 6C21 6 21 8.22727 19 9.5C17 10.7727 17 13 17 13" stroke="#2962FF"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
-        </div> --}}
-
+        </div>
         <div class="auth-wrapper d-flex no-block justify-content-center align-items-center"
-            style="background:url('{{ asset('backafs/assets/images/background/bg1.png') }}') no-repeat center center;">
-            <div class="auth-box">
+            style="background:url({{ asset('backafs/assets/images/app/backlogin.png') }}) no-repeat center left;">
+            <div class="auth-box on-sidebar">
                 <div id="loginform">
                     <div class="logo">
                         <span class="db"><img src="{{ asset('backafs/assets/images/app/logo_login.png') }}"
                                 alt="logo" /></span>
-                        <br><br>
-                        <h5 class="font-medium mb-3"><span style="font-size: 20px">Aplikasi MAPAN OM</span> <br>
-                            <span style="font-size: 12px">Dinas Komunikasi Informatika Statistik dan Persandian</span>
-                            <br>
-                            <span style="font-size: 12px">Kota Surakarta</span>
-                        </h5>
-                        @if ($errors->any())
-                            @foreach ($errors->all() as $error)
-                                <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show"
-                                    role="alert">
-                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
-                                    <strong>Gagal Login - </strong> {{ $error }}
-                                </div>
-                            @endforeach
-                        @endif
+                        <p>
+                        <h5 class="font-medium mb-3">Badan Kesatuan Bangsa dan Politik<br>
+                            Kota Surakarta</h5>
+                        </p>
                     </div>
+                    <!-- Form -->
                     <div class="row">
                         <div class="col-12">
                             <form class="form-horizontal mt-3" id="loginform" action="{{ route('login') }}"
@@ -85,23 +71,26 @@
                                         placeholder="Password" aria-label="Password" name="password"
                                         aria-describedby="basic-addon1">
                                 </div>
-                                <div class="mb-3 row">
+                                <div class="form-group row">
                                     <div class="col-md-12">
                                         <div class="form-check d-flex align-items-center">
-                                            <a href="{{ route('password.request') }}" class="text-dark ms-auto d-flex align-items-center"><i data-feather="lock" class="feather-sm me-1"></i> Lupa Password?</a>
+                                            <a href="{{ route('password.request') }}" id="to-recover"
+                                                class="text-dark ms-auto d-flex align-items-center">
+                                                <i data-feather="lock" class="feather-sm me-1"></i> Lupa Password ?</a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mb-3 text-center">
-                                    <div class="col-xs-12 pb-3">
-                                        <button class="btn d-block w-100 btn-lg btn-success font-medium" type="submit">
-                                            Log In
-                                        </button>
+                                <div class="form-group text-center">
+                                    <div class="col-xs-12 pb-3 mt-3">
+                                        <button class="btn d-block w-100 btn-lg btn-warning font-medium"
+                                            type="submit">Masuk</button>
                                     </div>
                                 </div>
-                                <div class="mb-3 mb-0 mt-2">
+
+                                <div class="form-group mb-0 mt-2">
                                     <div class="col-sm-12 text-center">
-                                        Don't have an account? <a href="{{ route('guest.daftar') }}" class="text-info ms-1"><b>Daftar</b></a>
+                                        Belum Punya Akun ? <a href="{{ route('guest.daftar') }}"
+                                            class="text-info ms-1"><b>Daftar</b></a>
                                     </div>
                                 </div>
                             </form>
@@ -111,22 +100,13 @@
             </div>
         </div>
     </div>
-    <!-- -------------------------------------------------------------- -->
-    <!-- All Required js -->
-    <!-- -------------------------------------------------------------- -->
-    <script src="{{ asset('backafs/assets/libs/jquery/backafs/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('backafs/assets/libs/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="{{ asset('backafs/assets/libs/bootstrap/backafs/dist/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- -------------------------------------------------------------- -->
-    <!-- This page plugin js -->
-    <!-- -------------------------------------------------------------- -->
+    <script src="{{ asset('backafs/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <!--Custom JavaScript -->
     <script src="{{ asset('backafs/dist/js/feather.min.js') }}"></script>
     <script src="{{ asset('backafs/dist/js/custom.min.js') }}"></script>
     <script>
-        // ==============================================================
-        // Login and Recover Password
-        // ==============================================================
         $('#to-recover').on("click", function() {
             $("#loginform").slideUp();
             $("#recoverform").fadeIn();
