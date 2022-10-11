@@ -27,6 +27,8 @@ class DatabaseSeeder extends Seeder
             KategoriSeeder::class,
             AktaNotarisSeeder::class,
             KepengurusanSeeder::class,
+            SliderSeeder::class,
+            SyaratAdministrasiSeeder::class,
             UserSeeder::class,
         ]);
     }
