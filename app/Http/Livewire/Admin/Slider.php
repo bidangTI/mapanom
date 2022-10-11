@@ -97,6 +97,8 @@ class Slider extends Component
 
             $this->success();
             $this->resetFields();
+            $this->dispatchBrowserEvent('close_add_slider_modal');
+
             
         } catch (\Throwable $th) {
             $this->error($th);
