@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Bidang;
 
 use Livewire\Component;
 
-use App\Models\User;
 use App\Models\Bidang;
 use App\Models\Subbidang;
 

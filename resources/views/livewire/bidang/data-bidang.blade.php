@@ -87,17 +87,19 @@
                                                                 <span class="me-5">
                                                                     {{ $ressub->subbidang }}
                                                                 </span>
+                                                                
                                                                 {{-- edit sub bidang --}}
                                                                 <button type="button" wire:loading.remove
                                                                     wire:target="edit_subbidang({{ $ressub->id }})"
-                                                                    class="btn btn-warning  btn-sm px-40 fs-40 font-small me-1"
+                                                                    class="btn btn-sm px-40 fs-40 font-small me-1"
                                                                     data-bs-toggle="tooltip" title="Edit Sub Bidang"
                                                                     wire:click="edit_subbidang({{ $ressub->id }})">
-                                                                    <i class="fas fa-edit"></i></button>
+                                                                    <span class="badge bg-light-warning text-warning font-medium"><i class="fas fa-edit"></i></span>
+                                                                    </button>
                                                                 <div wire:loading
                                                                     wire:target="edit_subbidang({{ $ressub->id }})">
                                                                     <button
-                                                                        class="btn btn-warning  btn-sm px-40 fs-40 font-small me-1"
+                                                                        class="btn btn-sm px-40 fs-40 font-small me-1"
                                                                         type="button" disabled>
                                                                         <span class="spinner-border spinner-border-sm"
                                                                             role="status" aria-hidden="true"></span>
@@ -108,14 +110,14 @@
                                                                 {{-- delete sub bidang --}}
                                                                 <button type="button" wire:loading.remove
                                                                     wire:target="confirm_subbidang({{ $ressub->id }})"
-                                                                    class="btn btn-danger  btn-sm px-40 fs-40 font-small me-1"
+                                                                    class="btn btn-sm px-40 fs-40 font-small me-1"
                                                                     data-bs-toggle="tooltip" title="Delete Sub Bidang"
-                                                                    wire:click="confirm_subbidang({{ $ressub->id }})"><i
-                                                                        class="fas fa-eraser"></i></button>
+                                                                    wire:click="confirm_subbidang({{ $ressub->id }})">
+                                                                    <span class="badge bg-light-danger text-danger font-medium"><i class="fas fa-eraser"></i></span></button>
                                                                 <div wire:loading
                                                                     wire:target="confirm_subbidang({{ $ressub->id }})">
                                                                     <button
-                                                                        class="btn btn-danger  btn-sm px-40 fs-40 font-small me-1"
+                                                                        class="btn btn-sm px-40 fs-40 font-small me-1"
                                                                         type="button" disabled>
                                                                         <span class="spinner-border spinner-border-sm"
                                                                             role="status" aria-hidden="true"></span>
@@ -133,9 +135,8 @@
                                                 {{-- tambahsubbid --}}
                                                 <button type="button" wire:loading.remove
                                                     wire:target="tempID({{ $res->id }})"
-                                                    class="btn btn-success  btn-sm px-40 fs-40 font-small me-1"
-                                                    wire:click="tempID({{ $res->id }})">Tambah Sub
-                                                    Bidang
+                                                    class="btn  btn-sm px-40 fs-40 font-small me-1"
+                                                    wire:click="tempID({{ $res->id }})"><span class="badge bg-light-success text-success font-medium">Tambah Sub Bidang</span>
                                                 </button>
 
                                                 <div wire:loading wire:target="tempID({{ $res->id }})">
@@ -149,8 +150,8 @@
                                                 {{-- edit bidang --}}
                                                 <button type="button" wire:loading.remove
                                                     wire:target="edit_bidang({{ $res->id }})"
-                                                    class="btn btn-warning btn-sm px-40 fs-40 font-small me-1"
-                                                    wire:click="edit_bidang({{ $res->id }})">Edit Bidang
+                                                    class="btn btn-sm px-40 fs-40 font-small me-1"
+                                                    wire:click="edit_bidang({{ $res->id }})"><span class="badge bg-light-warning text-warning font-medium">Edit Sub Bidang</span>
                                                 </button>
                                                 <div wire:loading wire:target="edit_bidang({{ $res->id }})">
                                                     <button class="btn btn-warning  btn-sm px-40 fs-40 font-small me-1"
@@ -164,8 +165,8 @@
                                                 {{-- delete bidang --}}
                                                 <button type="button" wire:loading.remove
                                                     wire:target="confirm_bidang({{ $res->id }})"
-                                                    class="btn btn-danger  btn-sm px-40 fs-40 font-small me-1"
-                                                    wire:click="confirm_bidang({{ $res->id }})">Delete Bidang
+                                                    class="btn btn-sm px-40 fs-40 font-small me-1"
+                                                    wire:click="confirm_bidang({{ $res->id }})"><span class="badge bg-light-danger text-danger font-medium">Hapus Bidang</span>
                                                 </button>
                                                 <div wire:loading wire:target="confirm_bidang({{ $res->id }})">
                                                     <button class="btn btn-danger  btn-sm px-40 fs-40 font-small me-1"

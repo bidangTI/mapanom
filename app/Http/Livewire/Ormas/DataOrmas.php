@@ -10,6 +10,9 @@ use App\Models\AktaNotaris;
 use App\Models\Kepengurusan;
 use App\Models\Bidang;
 use App\Models\Subbidang;
+use App\Models\Kecamatan;
+use App\Models\Kelurahan;
+use App\Models\Kota;
 
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -38,25 +41,40 @@ class DataOrmas extends Component
         $npwp,
         $sumberdana,
         $tujuanormas,
-        $kerjaormas,
         $skahu,
         $tglskahu,
         $tahunahu,
         $noreg,
-        $kategori;
+        $kategori,
+        $verifikasi,
+        $statuspersyaratan,
+        $ketverifikasi,
+        $notifkirim,
+        $kecamatan,
+        $kelurahan,
+        $kota;
 
     public function mount()
     {
         $data = User::find(Auth::user()->id);
 
         $this->noreg = $data->no_register;
-        $this->kategori = $data->kategori->kategori;
+
+        if (empty($this->noreg) == true) {
+        } else {
+            $this->kategori = $data->kategori->kategori;
+        }
 
         $this->dataAkta = AktaNotaris::all();
         $this->DataKepengurusan = Kepengurusan::all();
 
         $this->dataBidangv = Bidang::all();
         $this->dataSub = Subbidang::all();
+
+        $this->datakecamatanv = Kecamatan::all();
+        $this->datakelurahan = Kelurahan::all();
+        $this->datakotav = Kota::all();
+
         $this->loadExistingData();
     }
 
@@ -66,11 +84,18 @@ class DataOrmas extends Component
         $this->dataSubbidv = $this->dataSub->where('bidang_id', $this->bidang);
     }
 
+        // Listener Combo child untuk menampilkan kelurahan dari kecamatan
+    public function updatedkecamatan()
+    {
+        $this->datakelurahanv = $this->datakelurahan->where('kecamatan_id', $this->kecamatan);
+    }
+
     public function loadExistingData()
     {
         $exist = Persyaratan::where('no_register', $this->noreg)->first();
         if (!empty($exist)) {
             $this->dataSubbidv = $this->dataSub->where('bidang_id', $exist->bidang_id_ormas);
+            $this->datakelurahanv = $this->datakelurahan->where('kecamatan_id', $exist->kecamatan);
             $this->namaormas = $exist->nama_ormaspol;
             $this->singormas = $exist->singkatan_ormaspol;
             $this->akta = $exist->akta_id_ormas;
@@ -90,11 +115,22 @@ class DataOrmas extends Component
             $this->npwp = $exist->npwp_ormaspol;
             $this->sumberdana = $exist->sumber_dana;
             $this->tujuanormas = $exist->tujuan_ormas;
-            $this->kerjaormas = $exist->program_kerja_ormas;
             $this->skahu = $exist->no_sk_ahu;
             $this->tglskahu = Carbon::parse($exist->tgl_ahu)->format('d-m-Y');
             $this->tahunahu = $exist->tahun_ahu;
+            $this->verifikasi = $exist->verifikasi;
+            $this->ketverifikasi = $exist->keterangan_verifikasi;
+            $this->kecamatan = $exist->kecamatan;
+            $this->kelurahan = $exist->kelurahan;
+            $this->kota = $exist->kota;
         }
+
+        $existNotifikasi = User::where('no_register', $this->noreg)->first();
+        if (!empty($existNotifikasi)) {
+            $this->statuspersyaratan = $existNotifikasi->status_persyaratan;
+            $this->notifkirim = $existNotifikasi->notifikasi_kirim;
+        }
+
         $this->resetValidation();
     }
 
@@ -122,10 +158,12 @@ class DataOrmas extends Component
                 'npwp' => 'required',
                 'sumberdana' => 'required',
                 'tujuanormas' => 'required',
-                'kerjaormas' => 'required',
-                'skahu' => 'required',
-                'tglskahu' => 'required|date',
-                'tahunahu' => 'required|numeric'
+                // 'skahu' => 'required',
+                // 'tglskahu' => 'required|date',
+                // 'tahunahu' => 'required|numeric',
+                'kecamatan' => 'required',
+                'kelurahan' => 'required',
+                'kota' => 'required'
             ],
             [
                 'namaormas.required' => 'Nama Ormas Tidak Boleh Kosong',
@@ -146,10 +184,13 @@ class DataOrmas extends Component
                 'kepengurusan.required' => 'Kepengurusan Tidak Boleh Kosong',
                 'npwp.required' => 'NPWP Tidak Boleh Kosong',
                 'sumberdana.required' => 'Sumber Dana Tidak Boleh Kosong',
-                'skahu.required' => 'Sk Tidak Boleh Kosong',
-                'tglskahu.required' => 'Tanggal Tidak Boleh Kosong',
-                'tahunahu.required' => 'Tahun Tidak Boleh Kosong',
-                'tahunahu.numeric' => 'Harus Angka'
+                // 'skahu.required' => 'Sk Tidak Boleh Kosong',
+                // 'tglskahu.required' => 'Tanggal Tidak Boleh Kosong',
+                // 'tahunahu.required' => 'Tahun Tidak Boleh Kosong',
+                // 'tahunahu.numeric' => 'Harus Angka',
+                'kecamatan.required' => 'Kecamatan Tidak Boleh Kosong',
+                'kelurahan.required' => 'Kelurahan Tidak Boleh Kosong',
+                'kota.required' => 'Kota Tidak Boleh Kosong',
             ]
         );
 
@@ -170,7 +211,6 @@ class DataOrmas extends Component
                 'tgl_pendirian_ormas' => Carbon::parse($this->tglpendirian)->format('Y-m-d'),
                 'no_sk_kepengurusan_ormaspol' => $this->skpengurus,
                 'tujuan_ormas' => $this->tujuanormas,
-                'program_kerja_ormas' => $this->kerjaormas,
                 'keputusan_tinggi_ormas' => $this->keputusan,
                 'kepengurusan_id_ormas' => $this->kepengurusan,
                 'npwp_ormaspol' => $this->npwp,
@@ -179,18 +219,26 @@ class DataOrmas extends Component
                 'tgl_ahu' => Carbon::parse($this->tglskahu)->format('Y-m-d'),
                 'tahun_ahu' => $this->tahunahu,
                 'no_register' => $this->noreg,
-                'verifikasi' => 0
+                'verifikasi' => 0,
+                'kecamatan' => $this->kecamatan,
+                'kelurahan' => $this->kelurahan,
+                'kota' => $this->kota
             ]);
 
-            // $dataUpdateReg = ['reg' => $this->noreg];
-            // $updateReg = Persyaratan::where('no_register', $this->noreg)->update($dataUpdateReg);
+            if (empty($this->notifkirim)) {
+                User::updateorCreate(['no_register' => $this->noreg], [
+                    'feedback_persyaratan' => null
+                ]);
+            }elseif ($this->notifkirim == 'Y') {
+                User::updateorCreate(['no_register' => $this->noreg], [
+                    'feedback_persyaratan' => 'Y'
+                ]);
+            }
 
             $this->success();
-            // $this->resetFields();
             $this->loadExistingData();
         } catch (\Throwable $th) {
             $this->error($th);
-            // dd($th);
         }
     }
 
@@ -217,12 +265,14 @@ class DataOrmas extends Component
             'sumberdana',
             'skahu',
             'tglskahu',
-            'tahunahu'
+            'tahunahu',
+            'kecamatan',
+            'kelurahan',
+            'kota'
         ]);
 
         // emit summernote
         $this->emit('tujuanormas');
-        $this->emit('kerjaormas');
         $this->resetValidation();
     }
 

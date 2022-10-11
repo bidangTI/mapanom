@@ -14,6 +14,8 @@ use App\Models\Persyaratan;
 use App\Models\Dokumen;
 use App\Models\Role;
 use App\Models\Histori;
+use App\Models\SuratKeberadaan;
+use App\Models\TandaTangan;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -115,13 +117,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Dokumen::class, 'no_register', 'no_register');
     }
 
-    public function histori()
+    public function srtkeberadaan()
     {
-        return $this->belongsTo(Histori::class,'no_register', 'no_register');
+        return $this->hasMany(SuratKeberadaan::class, 'no_register', 'no_register');
     }
-
-    public function laporan()
+    public function reshistori()
     {
-        return $this->hasMany(LaporanSemester::class, 'no_register', 'no_register');
+        return $this->hasMany(Histori::class, 'no_register','no_register');
+    }
+    public function penandatangan()
+    {
+        return $this->hasOne(TandaTangan::class, 'id','user_id');
     }
 }

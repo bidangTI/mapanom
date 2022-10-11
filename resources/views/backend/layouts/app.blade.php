@@ -10,8 +10,7 @@
     <link rel="canonical" href="https://www.wrappixel.com/templates/xtremeadmin/" />
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('backafs/assets/images/app/iconbar1.png') }}">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!-- CSS DatePicker -->
     <link rel="stylesheet" type="text/css"
         href="{{ asset('backafs/assets/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
@@ -28,6 +27,8 @@
         rel="stylesheet">
     <link rel="stylesheet" type="text/css"
         href="{{ asset('backafs/assets/extra-libs/datatables.net-bs4/css/responsive.dataTables.min.css') }}">
+    <link href="{{ asset('backafs/assets/extra-libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}"
+        rel="stylesheet">
 
     {{-- Editor Summernote CSS --}}
     <link rel="stylesheet" type="text/css"
@@ -84,7 +85,7 @@
 
             <footer class="footer text-center">
                 {{-- <div class="card"> --}}
-                    @include('backend.layouts.footer')
+                @include('backend.layouts.footer')
                 {{-- </div> --}}
 
             </footer>
@@ -129,6 +130,7 @@
     <script src="{{ asset('backafs/assets/extra-libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('backafs/assets/extra-libs/datatables.net-bs4/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('backafs/dist/js/pages/datatable/datatable-basic.init.js') }}"></script>
+    <script src="{{ asset('backafs/dist/js/pages/datatable/datatable-advanced.init.js') }}"></script>
 
     {{-- Select2 JS --}}
     <script src="{{ asset('backafs/assets/libs/select2/dist/js/select2.full.min.js') }}"></script>

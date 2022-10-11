@@ -13,7 +13,8 @@ use App\Models\OrmasPembina;
 use App\Models\OrmasPenasihat;
 use App\Models\Persyaratan;
 use App\Models\Dokumen;
-
+use App\Models\Histori;
+use App\Models\SuratKeberadaan;
 use Illuminate\Support\Facades\Auth;
 use function PHPUnit\Framework\isNull;
 use Illuminate\Support\Facades\Response;
@@ -21,6 +22,8 @@ use Illuminate\Support\Facades\Response;
 
 class KirimOrmas extends Component
 {
+    public $url, $folder, $namefile, $tempUrl, $grab;
+
     protected $listeners = [
         'kirim_data' => 'proses_data'
     ];
@@ -46,8 +49,8 @@ class KirimOrmas extends Component
     public function proses_data($no_register)
     {
         try {
-            $IdPKetua = ['permohonan_id' => 2];
-            $DataKetua = User::where('no_register', $no_register)->update($IdPKetua);
+            $updatePermohonan = ['permohonan_id' => 2];
+            User::where('no_register', $no_register)->update($updatePermohonan);
 
             $this->success();
         } catch (\Throwable $th) {
@@ -75,13 +78,36 @@ class KirimOrmas extends Component
         ]);
     }
 
+    public function viewFile($id)
+    {
+        $tempData = SuratKeberadaan::where('id', $id)->first();
+        $tempUrl = $tempData->file_surat;
+        $grab = explode('/', $tempUrl);
+        $folder = $grab[0];
+        $namefile =$grab[1];
+        $this->url = $folder . '/' . $namefile;
+        $this->dispatchBrowserEvent('openViewFile');
+
+        $jml = $tempData->jml_view;
+        $saveView = ['jml_view' => $jml + 1];
+        SuratKeberadaan::where('id', $id)->update($saveView);
+    }
+    
+    public function closeView()
+    {
+        $this->dispatchBrowserEvent('closeViewFile');
+    }
+
     public function render()
     {
         $cekData = User::with(['ketua', 'sekretaris', 'bendahara', 'pendiri', 'pembina', 'penasihat', 'persyaratan', 'dokumen'])->where('no_register', $this->noreg)->get();
 
+        $cekHistori = Histori::where('no_register', $this->noreg)->get();
+        
+        $dataSurat = SuratKeberadaan::where('no_register', $this->noreg)->get();
 
-        if (!empty($cekData)) {
-            return view('livewire.ormas.kirim-ormas', compact('cekData'));
-        }
+        // if (!empty($cekData) && !empty($cekHistori) && !empty('$dataSurat')) {
+            return view('livewire.ormas.kirim-ormas', compact('cekData','cekHistori','dataSurat'));
+        // }
     }
 }

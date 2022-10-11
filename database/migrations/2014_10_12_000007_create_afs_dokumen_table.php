@@ -33,8 +33,8 @@ return new class extends Migration
             $table->string('ad_art_ormaspol');
             $table->integer('val_ad_art_ormaspol');
             $table->text('valket_ad_art_ormaspol')->nullable();
-            $table->string('sk_kemenkumham_ormas');
-            $table->integer('val_sk_kemenkumham_ormas');
+            $table->string('sk_kemenkumham_ormas')->nullable();
+            $table->integer('val_sk_kemenkumham_ormas')->nullable();
             $table->text('valket_sk_kemenkumham_ormas')->nullable();
             $table->string('surat_rekom_ormas');
             $table->integer('val_surat_rekom_ormas');
@@ -54,6 +54,9 @@ return new class extends Migration
             $table->string('surat_pernyataan_ormaspol');
             $table->integer('val_surat_pernyataan_ormaspol');
             $table->text('valket_surat_pernyataan_ormaspol')->nullable();
+            $table->string('program_kerja_ormas');
+            $table->integer('val_program_kerja_ormas');
+            $table->text('valket_program_kerja_ormas')->nullable();
             $table->timestamps();
 
             $table->foreign('no_register')->references('no_register')->on('users')->onDelete('cascade');

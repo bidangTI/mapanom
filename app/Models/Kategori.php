@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\SyaratAdministrasi;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\TemplateSurat;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Kategori extends Model
 {
@@ -13,8 +14,8 @@ class Kategori extends Model
     protected $guarded = ['id'];
     public $timestamps = true;
 
-    public function persyaratan()
+    public function datasurat()
     {
-        return $this->hasMany(SyaratAdministrasi::class);
+        return $this->belongsTo(TemplateSurat::class, 'id','kategori_id');
     }
 }
