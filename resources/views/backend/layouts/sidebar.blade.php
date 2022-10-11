@@ -104,6 +104,29 @@
                         </li>
                     </ul>
                 </li>
+
+                <div class="dropdown-divider"></div>
+
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                    href="{{ route('data-syarat') }}" aria-expanded="false"><i data-feather="file-text"
+                        class="feather-icon"></i><span class="hide-menu">Syarat Administrasi</span></a>
+                </li>
+
+                <div class="dropdown-divider"></div>
+
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                    href="{{ route('alur-persyaratan') }}" aria-expanded="false"><i data-feather="send"
+                        class="feather-icon"></i><span class="hide-menu">Alur Persyaratan</span></a>
+                </li>
+
+                <div class="dropdown-divider"></div>
+
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                    href="{{ route('slider') }}" aria-expanded="false"><i data-feather="image"
+                        class="feather-icon"></i><span class="hide-menu">Slider Gambar</span></a>
+                </li>
+
+
             @endif
 
             {{-- VERIFIKATOR AKSES --}}
@@ -264,6 +287,12 @@
                         @endif
                     </a>
                 </li>
+                <div class="dropdown-divider"></div>
+
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                    href="{{ route('laporan-semester') }}" aria-expanded="false"><i data-feather="file"
+                        class="feather-icon"></i><span class="hide-menu">Laporan Semester</span></a>
+                </li>
             @endif
 
             {{-- PENANDATANGAN AKSES --}}
@@ -314,6 +343,12 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+                <div class="dropdown-divider"></div>
+
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                    href="{{ route('laporan-admin') }}" aria-expanded="false"><i data-feather="folder"
+                        class="feather-icon"></i><span class="hide-menu">Laporan</span></a>
                 </li>
             @endif
 
