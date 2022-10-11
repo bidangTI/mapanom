@@ -30,6 +30,17 @@ use App\Http\Controllers\TtdPerubahan\TtdPerubahanController;
 use App\Http\Controllers\Laporan\OrmasTerdaftarController;
 use App\Http\Controllers\Excel\ExcelOrmasTerdaftarController;
 use App\Http\Controllers\RLangsung\RubahLangsungController;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Laporan\LaporanController;
+use App\Http\Controllers\Admin\LaporanAdminController;
+use \App\Http\Controllers\Admin\AlurPersyaratanController;
+use \App\Http\Controllers\Admin\SyaratAdministrasiController;
+use App\Http\Controllers\Laporan\LaporanSemesterController;
+use App\Http\Livewire\Admin\LaporanAdmin;
+
+
+
+
 
 use Illuminate\Support\Facades\Artisan;
 
@@ -106,6 +117,17 @@ Route::middleware(['auth', 'verified', 'roles:1,2,3,4,5'])->group(function () {
     Route::get('/rubah-persyaratan', [RubahLangsungController::class, 'persyaratan'])->name('rubah-persyaratan');
     Route::get('/rubah-pengurus', [RubahLangsungController::class, 'pengurus'])->name('rubah-pengurus');
     Route::get('/rubah-dokumen', [RubahLangsungController::class, 'dokumen'])->name('rubah-dokumen');
+
+    Route::get('/syarat',[SyaratAdministrasiController::class,'index'])->name('data-syarat');
+    Route::get('/alur-persyaratan', [AlurPersyaratanController::class, 'index'])->name('alur-persyaratan');
+    Route::get('/slider', [SliderController::class, 'index'])->name('slider');
+    Route::get('/laporan-semester', [LaporanController::class, 'index'])->name('laporan-semester');
+    Route::get('/laporan-admin', [LaporanAdminController::class, 'index'])->name('laporan-admin');
+    Route::get('/export_xlsx', [LaporanAdminController::class, 'export_xlsx'])->name('export_xlsx');
+    Route::get('/export_csv', [LaporanAdminController::class, 'export_csv'])->name('export_csv');
+    Route::get('/export_pdf', [LaporanAdminController::class, 'export_pdf'])->name('export_pdf');
+    Route::get('/user_pdf', [LaporanController::class, 'export_pdf'])->name('user_pdf');
+
 
 
     Route::get('/storagelink', function(){
